@@ -9,7 +9,7 @@ def main(cfg: DictConfig):
   OmegaConf.to_yaml(cfg)
 
   response = requests.get(
-    'http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
+    url=f"{cfg.api.base_url}{cfg.api.ncaa_basketball_endpoint}",
     headers=cfg.api.headers,
     verify=False,
   )
