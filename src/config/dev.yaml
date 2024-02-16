@@ -13,19 +13,19 @@ api:
 
 storage:
   staging:
-    file_path: /Users/username/Projects/ncaa_basketball/data/staging
-    file_name: ncaa_basketball_scores_{{date_time}}
+    file_path: /Users/travistomer/Documents/ncaa-basketball-stats-etl/data/staging/
+    file_name: ncaa_basketball_output
     file_type: json
   raw:
-    file_path: /Users/username/Projects/ncaa_basketball/data/raw
+    file_path: /Users/travistomer/Documents/ncaa-basketball-stats-etl/data/raw/
     file_name: ncaa_basketball_scores_raw
     file_type: csv
   refined:
-    file_path: /Users/username/Projects/ncaa_basketball/data/refined
-    file_name: ncaa_basketball_scores_refined.csv
+    file_path: /Users/travistomer/Documents/ncaa-basketball-stats-etl/data/refined/
+    file_name: ncaa_basketball_scores_refined
     file_type: csv
   produced:
-    file_path: /Users/username/Projects/ncaa_basketball/data/produced
-    file_name: ncaa_basketball_scores_produced.csv
+    file_path: /Users/travistomer/Documents/ncaa-basketball-stats-etl/data/produced/
+    file_name: ncaa_basketball_scores_produced
     file_type: csv
 
