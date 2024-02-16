@@ -1,4 +1,5 @@
 import datetime
+import os
 import json
 import requests
 import hydra
@@ -19,14 +20,18 @@ def main(cfg: DictConfig):
   # Use the json module to load CKAN's response into a dictionary.
   response_dict = json.loads(response.text)
 
+  # Get current working directory
+  cwd = os.getcwd()
+
   # Construct file path
-  write_path = f"{cfg.storage.staging.file_path}{cfg.storage.staging.file_name}_{str(response_dict['day']['date'])}.{cfg.storage.staging.file_type}"
-  print(f"---->>>> {write_path}") # TODO: Convert to logger
+  write_path = f"{cwd}{cfg.storage.staging.file_path}{cfg.storage.staging.file_name}_{str(response_dict['day']['date'])}.{cfg.storage.staging.file_type}"
+
+
+  print(f"---->>>> Write path: {cwd}{cfg.storage.staging.file_path}")
 
   # TODO: Add error handling for file write and add class for file handling
   with open(write_path, 'w') as f: # Write file to staging
-    json.dump(response_dict, f)
-
+    json.dump(response_dict, f, indent=4)
 
 if __name__ == '__main__':
   x = main()
