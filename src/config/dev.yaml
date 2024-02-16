@@ -1,31 +1,41 @@
+defaults:  
+  - _self_  
+  - override hydra/hydra_logging: disabled  
+  - override hydra/job_logging: disabled  
+  
+hydra:  
+  output_subdir: null  
+  run:  
+    dir: .
+
 api: 
   base_url: http://site.api.espn.com/apis/site/v2
   ncaa_basketball_endpoint: /sports/basketball/mens-college-basketball/scoreboard
   headers: {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Cache-Control': 'max-age=0',
-    'Connection': 'keep-alive',
-    'DNT': '1',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    # 'Accept-Language': 'en-US,en;q=0.9',
+    # 'Cache-Control': 'max-age=0',
+    # 'Connection': 'keep-alive',
+    # 'DNT': '1',
+    # 'Upgrade-Insecure-Requests': '1',
+    # 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     }
 
 storage:
   staging:
-    file_path: /Users/username/Projects/ncaa_basketball/data/staging
-    file_name: ncaa_basketball_scores_{{date_time}}
+    file_path: /ncaa-basketball-stats-etl/data/staging/
+    file_name: ncaa_basketball_output
     file_type: json
   raw:
-    file_path: /Users/username/Projects/ncaa_basketball/data/raw
+    file_path: ../ncaa-basketball-stats-etl/data/raw/
     file_name: ncaa_basketball_scores_raw
     file_type: csv
   refined:
-    file_path: /Users/username/Projects/ncaa_basketball/data/refined
-    file_name: ncaa_basketball_scores_refined.csv
+    file_path: ../ncaa-basketball-stats-etl/data/refined/
+    file_name: ncaa_basketball_scores_refined
     file_type: csv
   produced:
-    file_path: /Users/username/Projects/ncaa_basketball/data/produced
-    file_name: ncaa_basketball_scores_produced.csv
+    file_path: ../ncaa-basketball-stats-etl/data/produced/
+    file_name: ncaa_basketball_scores_produced
     file_type: csv
 
