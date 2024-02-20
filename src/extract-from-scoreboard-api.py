@@ -16,18 +16,23 @@ def main(cfg: DictConfig):
     headers=cfg.api.headers,
     verify=False,
   )
+  print(f"---->>>> Status Code: {response.status_code}")
 
   # Use the json module to load CKAN's response into a dictionary.
   response_dict = json.loads(response.text)
+  print(f"---->>>> Date from response: {str(response_dict['day']['date'])}")
 
   # Get current working directory
   cwd = os.getcwd()
+  print(f"---->>>> Current working directory: {cwd}")
 
+  # Construct file_name
+  file_name = cfg.storage.staging.file_name + "_" + response_dict['day']['date']
+  print(f"---->>>> File name: {file_name}")
+  
   # Construct file path
-  write_path = f"{cwd}{cfg.storage.staging.file_path}{cfg.storage.staging.file_name}_{str(response_dict['day']['date'])}.{cfg.storage.staging.file_type}"
-
-
-  print(f"---->>>> Write path: {cwd}{cfg.storage.staging.file_path}")
+  write_path = f"{cwd}{cfg.storage.staging.file_path}{cfg.storage.staging.file_name}_{file_name}.json"
+  print(f"---->>>> Write path: {write_path}")
 
   # TODO: Add error handling for file write and add class for file handling
   with open(write_path, 'w') as f: # Write file to staging
