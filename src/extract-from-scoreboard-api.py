@@ -5,6 +5,8 @@ import requests
 import hydra
 from omegaconf import DictConfig, OmegaConf
 
+# TODO: investigate caching
+
 @hydra.main(config_path="./config", config_name="dev")
 def main(cfg: DictConfig):
   # Main entry point for the pipeline.
@@ -29,7 +31,7 @@ def main(cfg: DictConfig):
   # Construct file_name
   file_name = cfg.storage.staging.file_name + "_" + response_dict['day']['date']
   print(f"---->>>> File name: {file_name}")
-  
+
   # Construct file path
   write_path = f"{cwd}{cfg.storage.staging.file_path}{cfg.storage.staging.file_name}_{file_name}.json"
   print(f"---->>>> Write path: {write_path}")
